@@ -1,3 +1,4 @@
+using System;
 using System.Threading;
 using System.Threading.Tasks;
 using API.Domain.Product.Command;
@@ -5,6 +6,7 @@ using API.Models;
 using API.Interfaces;
 using AutoMapper;
 using MediatR;
+using API.Extensions;
 
 namespace API.Domain.Product
 {
@@ -25,18 +27,32 @@ namespace API.Domain.Product
 
         public async Task<string> Handle(AddProductCommand request, CancellationToken cancellationToken)
         {
+            if(_repository.IfExist(request.Name))
+                return await Task.FromResult("Ja existe um produto cadastrado com esse nome.");
+            
             _repository.AddProduct(_mapper.Map<ProductEntity>(request));
             return await Task.FromResult("Produto cadastro com sucesso.");
+            
         }
 
-        public Task<string> Handle(DeleteProductCommand request, CancellationToken cancellationToken)
+        public async Task<string> Handle(DeleteProductCommand request, CancellationToken cancellationToken)
         {
-            throw new System.NotImplementedException();
+            if(request.Id == null) 
+                return await Task.FromResult("Nenhum Id foi fornecido.");
+
+            _repository.DeleteProduct(request.Id);
+            return await Task.FromResult("Produto excluído com sucesso.");
         }
 
-        public Task<string> Handle(UpdateProductCommand request, CancellationToken cancellationToken)
+        public async Task<string> Handle(UpdateProductCommand request, CancellationToken cancellationToken)
         {
-            throw new System.NotImplementedException();
+            Guid id;
+            if(!Guid.TryParse(request.Id, out id))
+                return await Task.FromResult("Um Id inválido foi fornecido, não e possível efetuar a ação.");
+
+            _repository.UpdateProduct(_mapper.Map<ProductEntity>(request));
+            return await Task.FromResult("Produto alterado com sucesso.");
+
         }
     }
 }

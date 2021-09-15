@@ -1,3 +1,4 @@
+using System.Text;
 using Microsoft.Extensions.DependencyInjection;
 using API.Models;
 using API.Data;
@@ -28,8 +29,20 @@ namespace API.Extensions
         {
             //--------------DOMAIN--------------
             //PRODUCT
-            cfg.CreateMap<AddProductCommand, ProductEntity>();
+            cfg.CreateMap<AddProductCommand, ProductEntity>().ConstructUsing(p => new ProductEntity(Guid.NewGuid()));
             cfg.CreateMap<UpdateProductCommand, ProductEntity>();
+        }
+
+        public static string GetFullMessage(this Exception exception)
+        {
+            StringBuilder errorMessage = new StringBuilder();
+
+            do{
+                errorMessage.Append(exception.Message);
+                exception = exception.InnerException;
+            }while(exception != null);
+
+            return errorMessage.ToString();
         }
     }
 }
