@@ -10,8 +10,7 @@ using API.Extensions;
 namespace API.Controllers
 {
     [ApiController]
-    [AllowAnonymous]
-    [Route("[controller]")]
+    [Route(template:"v1")]
     public class ProductController : ControllerBase
     {
         private readonly IMediator _mediator;

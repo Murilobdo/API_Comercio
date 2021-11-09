@@ -26,9 +26,9 @@ namespace API.Extensions
         public static void ConfigureHandlers(this IServiceCollection service)
         {
             //--------------PRODUCT--------------
-            service.AddScoped<IRequestHandler<AddProductCommand, string>, EmpregadorHandler>();
-            service.AddScoped<IRequestHandler<UpdateProductCommand, string>, EmpregadorHandler>();
-            service.AddScoped<IRequestHandler<DeleteProductCommand, string>, EmpregadorHandler>();
+            service.AddScoped<IRequestHandler<AddProductCommand, string>, ProductHandler>();
+            service.AddScoped<IRequestHandler<UpdateProductCommand, string>, ProductHandler>();
+            service.AddScoped<IRequestHandler<DeleteProductCommand, string>, ProductHandler>();
 
             
         }

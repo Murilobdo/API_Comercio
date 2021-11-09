@@ -1,3 +1,5 @@
+using System.ComponentModel;
+using System.Text;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -6,6 +8,7 @@ using API.Data;
 using API.Extensions;
 using AutoMapper;
 using MediatR;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
@@ -16,6 +19,8 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using Microsoft.OpenApi.Models;
+using API_MongoDB;
+using Microsoft.IdentityModel.Tokens;
 
 namespace API
 {
@@ -36,6 +41,25 @@ namespace API
             services.AddInjectionDependency();
 
             services.AddControllers();
+
+            var key = Encoding.ASCII.GetBytes(Settings.SecretKey);
+
+            services.AddAuthentication(p => {
+                p.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
+                p.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
+            })
+            .AddJwtBearer(p => {
+                p.RequireHttpsMetadata = false;
+                p.SaveToken = true;
+                p.TokenValidationParameters = new TokenValidationParameters
+                {
+                    ValidateIssuerSigningKey = true,
+                    IssuerSigningKey = new SymmetricSecurityKey(key),
+                    ValidateIssuer = false,
+                    ValidateAudience = false
+                };
+            });
+
 
             services.AddDbContextPool<AppDbContext>(options => 
                 options.UseSqlServer(Configuration.GetConnectionString("AzureDatabase"))
@@ -67,6 +91,7 @@ namespace API
 
             app.UseRouting();
 
+            app.UseAuthentication();
             app.UseAuthorization();
 
             app.UseEndpoints(endpoints =>

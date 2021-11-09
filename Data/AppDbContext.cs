@@ -1,5 +1,6 @@
 using System;
 using API.Models;
+using API_MongoDB.Domain.Company.Models;
 using Microsoft.EntityFrameworkCore;
 
 namespace API.Data
@@ -11,5 +12,6 @@ namespace API.Data
         }
 
         public DbSet<ProductEntity> Products { get; set; }
+        public DbSet<CompanyEntity> Company { get; set; }
     }
 }

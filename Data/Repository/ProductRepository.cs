@@ -7,6 +7,11 @@ namespace API.Data.Repository
 {
     public class ProductRepository : IProductRepository
     {
+        private readonly AppDbContext _context;
+        public ProductRepository(AppDbContext context)
+        {
+            _context = context;
+        }
         public void AddProduct(ProductEntity command)
         {
             throw new NotImplementedException();
