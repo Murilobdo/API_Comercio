@@ -10,7 +10,7 @@ using API.Extensions;
 
 namespace API.Domain.Product
 {
-    public class Handler : 
+    public class EmpregadorHandler:
         IRequestHandler<AddProductCommand, string>,
         IRequestHandler<UpdateProductCommand, string>,
         IRequestHandler<DeleteProductCommand, string>
@@ -18,7 +18,7 @@ namespace API.Domain.Product
         private readonly IProductRepository _repository;
         private readonly IMediator _mediator;
         private readonly IMapper _mapper;
-        public Handler(IProductRepository repo, IMediator mediator, IMapper mapper)
+        public EmpregadorHandler(IProductRepository repo, IMediator mediator, IMapper mapper)
         {
             _repository = repo;
             _mediator = mediator;
@@ -52,7 +52,6 @@ namespace API.Domain.Product
 
             _repository.UpdateProduct(_mapper.Map<ProductEntity>(request));
             return await Task.FromResult("Produto alterado com sucesso.");
-
         }
     }
 }

@@ -8,21 +8,29 @@ using API.Interfaces;
 using API.Data.Repository;
 using AutoMapper;
 using API.Domain.Product.Command;
+using MediatR;
+using API.Domain.Product;
 
 namespace API.Extensions
 {
     public static class Extensions
     {
-        public static void ConfigureMongoDb(this IConfiguration config)
-        {
-            MongoDbContext.ConnectionString = config.GetSection("MongoConnection:ConnectionString").Value;
-            MongoDbContext.DatabaseName = config.GetSection("MongoConnection:Database").Value;
-            MongoDbContext.IsSSL = Convert.ToBoolean(config.GetSection("MongoConnection:IsSSL").Value);
-        }
+       
 
         public static void AddInjectionDependency(this IServiceCollection service)
         {
             service.AddScoped<IProductRepository, ProductRepository>();
+            service.AddScoped<AppDbContext>();
+        }
+
+        public static void ConfigureHandlers(this IServiceCollection service)
+        {
+            //--------------PRODUCT--------------
+            service.AddScoped<IRequestHandler<AddProductCommand, string>, EmpregadorHandler>();
+            service.AddScoped<IRequestHandler<UpdateProductCommand, string>, EmpregadorHandler>();
+            service.AddScoped<IRequestHandler<DeleteProductCommand, string>, EmpregadorHandler>();
+
+            
         }
 
         public static void ConfigureMapper(this IMapperConfigurationExpression cfg)

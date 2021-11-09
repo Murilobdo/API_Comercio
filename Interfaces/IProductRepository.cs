@@ -1,7 +1,5 @@
 using System.Collections.Generic;
 using API.Models;
-using API.Domain.Product.Command;
-using MongoDB.Driver;
 using System;
 
 namespace API.Interfaces
