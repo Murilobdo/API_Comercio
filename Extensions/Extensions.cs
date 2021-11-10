@@ -10,6 +10,8 @@ using AutoMapper;
 using API.Domain.Product.Command;
 using MediatR;
 using API.Domain.Product;
+using API_MongoDB.Domain.Company.Commands;
+using API_MongoDB.Domain.Company;
 
 namespace API.Extensions
 {
@@ -20,6 +22,7 @@ namespace API.Extensions
         public static void AddInjectionDependency(this IServiceCollection service)
         {
             service.AddScoped<IProductRepository, ProductRepository>();
+            service.AddScoped<ICompanyRepository, CompanyRepository>();
             service.AddScoped<AppDbContext>();
         }
 
@@ -30,6 +33,10 @@ namespace API.Extensions
             service.AddScoped<IRequestHandler<UpdateProductCommand, string>, ProductHandler>();
             service.AddScoped<IRequestHandler<DeleteProductCommand, string>, ProductHandler>();
 
+            //--------------COMPANY--------------
+            service.AddScoped<IRequestHandler<LoginCompanyCommand, string>, CompanyHandler>();
+
+
             
         }
 
@@ -39,6 +46,9 @@ namespace API.Extensions
             //PRODUCT
             cfg.CreateMap<AddProductCommand, ProductEntity>().ConstructUsing(p => new ProductEntity(Guid.NewGuid()));
             cfg.CreateMap<UpdateProductCommand, ProductEntity>();
+
+            //COMPANY
+
         }
 
         public static string GetFullMessage(this Exception exception)

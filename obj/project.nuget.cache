@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "FxenSISBzxmYga0ZNJqItdGfXByaPynb6rsB9mo5AniLXd26+3m2UpcF4AIS/LqHa/+YHnVoDlwrt/TB0Vmc4Q==",
+  "dgSpecHash": "HsG9gnmqFVtbFga2z3xmUS/++ibDYyYyQBcTRJC+jhy3EOfoOURtyu3b7Dxqo1J2hlYZkcxZQFyPfEZzsC5jMw==",
   "success": true,
   "projectFilePath": "C:\\Projetos\\API_MongoDB\\API.csproj",
   "expectedPackageFiles": [
@@ -11,6 +11,7 @@
     "C:\\Users\\Murilo\\.nuget\\packages\\mediatr.extensions.microsoft.dependencyinjection\\9.0.0\\mediatr.extensions.microsoft.dependencyinjection.9.0.0.nupkg.sha512",
     "C:\\Users\\Murilo\\.nuget\\packages\\microsoft.aspnetcore.authentication\\2.2.0\\microsoft.aspnetcore.authentication.2.2.0.nupkg.sha512",
     "C:\\Users\\Murilo\\.nuget\\packages\\microsoft.aspnetcore.authentication.abstractions\\2.2.0\\microsoft.aspnetcore.authentication.abstractions.2.2.0.nupkg.sha512",
+    "C:\\Users\\Murilo\\.nuget\\packages\\microsoft.aspnetcore.authentication.certificate\\5.0.12\\microsoft.aspnetcore.authentication.certificate.5.0.12.nupkg.sha512",
     "C:\\Users\\Murilo\\.nuget\\packages\\microsoft.aspnetcore.authentication.core\\2.2.0\\microsoft.aspnetcore.authentication.core.2.2.0.nupkg.sha512",
     "C:\\Users\\Murilo\\.nuget\\packages\\microsoft.aspnetcore.authentication.jwtbearer\\5.0.12\\microsoft.aspnetcore.authentication.jwtbearer.5.0.12.nupkg.sha512",
     "C:\\Users\\Murilo\\.nuget\\packages\\microsoft.aspnetcore.cryptography.internal\\2.2.0\\microsoft.aspnetcore.cryptography.internal.2.2.0.nupkg.sha512",

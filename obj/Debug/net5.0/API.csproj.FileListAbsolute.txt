@@ -9,8 +9,11 @@ C:\Projetos\API_MongoDB\bin\Debug\net5.0\ref\API.dll
 C:\Projetos\API_MongoDB\bin\Debug\net5.0\API.pdb
 C:\Projetos\API_MongoDB\bin\Debug\net5.0\AutoMapper.dll
 C:\Projetos\API_MongoDB\bin\Debug\net5.0\DnsClient.dll
+C:\Projetos\API_MongoDB\bin\Debug\net5.0\Humanizer.dll
 C:\Projetos\API_MongoDB\bin\Debug\net5.0\MediatR.dll
 C:\Projetos\API_MongoDB\bin\Debug\net5.0\MediatR.Extensions.Microsoft.DependencyInjection.dll
+C:\Projetos\API_MongoDB\bin\Debug\net5.0\Microsoft.AspNetCore.Authentication.Certificate.dll
+C:\Projetos\API_MongoDB\bin\Debug\net5.0\Microsoft.AspNetCore.Authentication.JwtBearer.dll
 C:\Projetos\API_MongoDB\bin\Debug\net5.0\Microsoft.Data.SqlClient.dll
 C:\Projetos\API_MongoDB\bin\Debug\net5.0\Microsoft.EntityFrameworkCore.dll
 C:\Projetos\API_MongoDB\bin\Debug\net5.0\Microsoft.EntityFrameworkCore.Abstractions.dll
@@ -73,5 +76,3 @@ C:\Projetos\API_MongoDB\obj\Debug\net5.0\API.dll
 C:\Projetos\API_MongoDB\obj\Debug\net5.0\ref\API.dll
 C:\Projetos\API_MongoDB\obj\Debug\net5.0\API.pdb
 C:\Projetos\API_MongoDB\obj\Debug\net5.0\API.genruntimeconfig.cache
-C:\Projetos\API_MongoDB\bin\Debug\net5.0\Humanizer.dll
-C:\Projetos\API_MongoDB\bin\Debug\net5.0\Microsoft.AspNetCore.Authentication.JwtBearer.dll

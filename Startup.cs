@@ -21,6 +21,7 @@ using Microsoft.Extensions.Logging;
 using Microsoft.OpenApi.Models;
 using API_MongoDB;
 using Microsoft.IdentityModel.Tokens;
+using Microsoft.AspNetCore.Authentication.Certificate;
 
 namespace API
 {
@@ -43,7 +44,7 @@ namespace API
             services.AddControllers();
 
             var key = Encoding.ASCII.GetBytes(Settings.SecretKey);
-
+            
             services.AddAuthentication(p => {
                 p.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
                 p.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
@@ -61,7 +62,7 @@ namespace API
             });
 
 
-            services.AddDbContextPool<AppDbContext>(options => 
+            services.AddDbContext<AppDbContext>(options => 
                 options.UseSqlServer(Configuration.GetConnectionString("AzureDatabase"))
             );
 
@@ -70,6 +71,7 @@ namespace API
             services.AddSwaggerGen(c =>
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "API", Version = "v1" });
+                c.ResolveConflictingActions(apiDescriptions => apiDescriptions.First()); //This line
             });
 
             var config = new AutoMapper.MapperConfiguration(cfg => cfg.ConfigureMapper());
@@ -80,6 +82,8 @@ namespace API
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
+            app.UseAuthentication();
+
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
@@ -90,8 +94,7 @@ namespace API
             app.UseHttpsRedirection();
 
             app.UseRouting();
-
-            app.UseAuthentication();
+            
             app.UseAuthorization();
 
             app.UseEndpoints(endpoints =>
