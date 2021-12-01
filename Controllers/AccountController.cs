@@ -7,11 +7,12 @@ using System.Threading.Tasks;
 using System;
 using API.Extensions;
 using API_MongoDB.Domain.Company.Commands;
+using API_MongoDB.Services;
 
 namespace API.Controllers
 {
     [ApiController]
-    [Route(template:"v1")]
+    [Route(template:"v1/account")]
     public class AccountController : ControllerBase
     {
         private readonly IMediator _mediator;
@@ -33,34 +34,6 @@ namespace API.Controllers
             catch (Exception ex)
             {
                 return Ok(Task.FromResult("Algo aconteceu ao tentar fazer o login, " + ex.GetFullMessage()));
-            }
-        }
-
-        [HttpPost("EditProduct")]
-        public async Task<IActionResult> EditProduct([FromBody] UpdateProductCommand command)
-        {
-            try
-            {
-                var response = await _mediator.Send(command);
-                return Ok(response);
-            }
-            catch (Exception ex)
-            {
-                return Ok(Task.FromResult("Algo aconteceu ao tentar editar um produto, " + ex.GetFullMessage()));
-            }
-        }
-
-        [HttpPost("DeleteProduct")]
-        public async Task<IActionResult> DeleteProduct([FromBody] DeleteProductCommand command)
-        {
-            try
-            {
-                var response = await _mediator.Send(command);
-                return Ok(response);
-            }
-            catch (Exception ex)
-            {
-                return Ok(Task.FromResult("Algo aconteceu ao tentar deletar um produto, " + ex.GetFullMessage()));
             }
         }
     }

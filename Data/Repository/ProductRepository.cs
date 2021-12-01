@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using API.Interfaces;
 using API.Models;
 
@@ -12,19 +13,26 @@ namespace API.Data.Repository
         {
             _context = context;
         }
-        public void AddProduct(ProductEntity command)
+        public void AddProduct(ProductEntity entity)
         {
-            throw new NotImplementedException();
+            _context.Products.Add(entity);
+            _context.SaveChanges();
         }
 
-        public void DeleteProduct(Guid id)
+        public void DeleteProduct(ProductEntity entity)
         {
-            throw new NotImplementedException();
+            _context.Products.Remove(entity);
+            _context.SaveChanges();
+        }
+
+        public ProductEntity Find(Guid id)
+        {
+            return _context.Products.FirstOrDefault(p => p.Id == id);
         }
 
         public bool IfExist(string productName)
         {
-            throw new NotImplementedException();
+            return _context.Products.Where(p => p.Name == productName).Count() > 0;
         }
 
         public List<ProductEntity> ListProducts()
@@ -32,9 +40,9 @@ namespace API.Data.Repository
             throw new NotImplementedException();
         }
 
-        public void UpdateProduct(ProductEntity productEntity)
+        public void UpdateProduct(ProductEntity entity)
         {
-            throw new NotImplementedException();
+            _context.Products.Update(entity);
         }
     }
 }

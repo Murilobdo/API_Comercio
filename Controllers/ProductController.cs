@@ -6,11 +6,12 @@ using MediatR;
 using System.Threading.Tasks;
 using System;
 using API.Extensions;
+using System.ComponentModel.DataAnnotations;
 
 namespace API.Controllers
 {
     [ApiController]
-    [Route(template:"v1")]
+    [Route(template:"v1/product")]
     public class ProductController : ControllerBase
     {
         private readonly IMediator _mediator;
@@ -22,10 +23,13 @@ namespace API.Controllers
 
 
         [HttpPost("AddProduct")]
+        [Authorize(Roles = "Dono")]
         public async Task<IActionResult> AddProduct([FromBody] AddProductCommand command)
         {
             try
             {
+                //TODO: Pegar o id da empresa na requisição
+                //para fazer o cadastro do produto
                 var response = await _mediator.Send(command);
                 return Ok(response);
             }
@@ -36,6 +40,7 @@ namespace API.Controllers
         }
 
         [HttpPost("EditProduct")]
+        [Authorize(Roles = "Dono")]
         public async Task<IActionResult> EditProduct([FromBody] UpdateProductCommand command)
         {
             try
@@ -50,6 +55,7 @@ namespace API.Controllers
         }
 
         [HttpPost("DeleteProduct")]
+        [Authorize(Roles = "Dono")]
         public async Task<IActionResult> DeleteProduct([FromBody] DeleteProductCommand command)
         {
             try

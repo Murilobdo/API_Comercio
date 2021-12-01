@@ -6,10 +6,11 @@ namespace API.Interfaces
 {
     public interface IProductRepository
     {
-        void AddProduct(ProductEntity command);
+        void AddProduct(ProductEntity entity);
         List<ProductEntity> ListProducts();
         bool IfExist(string productName);
-        void DeleteProduct(Guid id);
+        void DeleteProduct(ProductEntity entity);
         void UpdateProduct(ProductEntity productEntity);
+        ProductEntity Find(Guid id);
     }
 }

@@ -37,10 +37,11 @@ namespace API.Domain.Product
 
         public async Task<string> Handle(DeleteProductCommand request, CancellationToken cancellationToken)
         {
-            // if(request.Id.Value == null) 
-            //     return await Task.FromResult("Nenhum Id foi fornecido.");
+            if(request.Id == Guid.Empty) 
+               return await Task.FromResult("Nenhum Id foi fornecido.");
 
-            // _repository.DeleteProduct(request.Id);
+            var product = _repository.Find(request.Id);
+            _repository.DeleteProduct(product);
             return await Task.FromResult("Produto excluído com sucesso.");
         }
 

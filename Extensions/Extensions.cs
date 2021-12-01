@@ -44,7 +44,7 @@ namespace API.Extensions
         {
             //--------------DOMAIN--------------
             //PRODUCT
-            cfg.CreateMap<AddProductCommand, ProductEntity>().ConstructUsing(p => new ProductEntity(Guid.NewGuid()));
+            cfg.CreateMap<AddProductCommand, ProductEntity>();
             cfg.CreateMap<UpdateProductCommand, ProductEntity>();
 
             //COMPANY
