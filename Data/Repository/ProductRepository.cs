@@ -27,17 +27,19 @@ namespace API.Data.Repository
 
         public ProductEntity Find(Guid id)
         {
-            return _context.Products.FirstOrDefault(p => p.Id == id);
+            return _context.Products
+                .FirstOrDefault(p => p.Id == id);
         }
 
-        public bool IfExist(string productName)
+        public bool IfExist(string productName, Guid IdCompany)
         {
-            return _context.Products.Where(p => p.Name == productName).Count() > 0;
+            return _context.Products
+                .Where(p => p.Name == productName && p.IdCompany == IdCompany).Count() > 0;
         }
 
-        public List<ProductEntity> ListProducts()
+        public IEnumerable<ProductEntity> ListProducts(Guid IdCompany)
         {
-            throw new NotImplementedException();
+            return _context.Products.Where(p => p.IdCompany == IdCompany);
         }
 
         public void UpdateProduct(ProductEntity entity)

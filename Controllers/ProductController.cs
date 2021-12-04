@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 using System;
 using API.Extensions;
 using System.ComponentModel.DataAnnotations;
+using API_MongoDB.Services;
 
 namespace API.Controllers
 {
@@ -28,8 +29,8 @@ namespace API.Controllers
         {
             try
             {
-                //TODO: Pegar o id company corretamente
-                command.IdCompany = Guid.NewGuid();
+                string token = Request.Headers["Authorization"];
+                command.IdCompany = TokenService.GetCompanyId(token);
                 var response = await _mediator.Send(command);
                 return Ok(response);
             }
@@ -45,8 +46,8 @@ namespace API.Controllers
         {
             try
             {
-                //TODO: Pegar o id company corretamente
-                command.IdCompany = Guid.NewGuid();
+                string token = Request.Headers["Authorization"];
+                command.IdCompany = TokenService.GetCompanyId(token);
                 var response = await _mediator.Send(command);
                 return Ok(response);
             }
@@ -62,6 +63,8 @@ namespace API.Controllers
         {
             try
             {
+                string token = Request.Headers["Authorization"];
+                command.IdCompany = TokenService.GetCompanyId(token);
                 var response = await _mediator.Send(command);
                 return Ok(response);
             }

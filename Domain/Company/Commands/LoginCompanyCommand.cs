@@ -1,8 +1,5 @@
 using System.ComponentModel.DataAnnotations;
-using API_MongoDB.Domain.ValidationsAttribute.Shared;
 using MediatR;
-using API_MongoDB.Domain.Enums;
-
 namespace API_MongoDB.Domain.Company.Commands
 {
     public class LoginCompanyCommand : IRequest<string>

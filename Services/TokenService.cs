@@ -33,6 +33,7 @@ namespace API_MongoDB.Services
 
         public static Guid GetCompanyId(string token)
         {
+            token = token.Split(" ")[1];
             var tokenHandler = new JwtSecurityTokenHandler();
             var key = Encoding.ASCII.GetBytes(Settings.SecretKey);
             tokenHandler.ValidateToken(token, new TokenValidationParameters

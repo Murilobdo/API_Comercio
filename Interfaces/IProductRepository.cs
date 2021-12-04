@@ -7,8 +7,8 @@ namespace API.Interfaces
     public interface IProductRepository
     {
         void AddProduct(ProductEntity entity);
-        List<ProductEntity> ListProducts();
-        bool IfExist(string productName);
+        IEnumerable<ProductEntity> ListProducts(Guid IdCompany);
+        bool IfExist(string productName, Guid IdCompany);
         void DeleteProduct(ProductEntity entity);
         void UpdateProduct(ProductEntity productEntity);
         ProductEntity Find(Guid id);
