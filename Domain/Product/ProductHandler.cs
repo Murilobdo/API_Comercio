@@ -32,7 +32,6 @@ namespace API.Domain.Product
             
             _repository.AddProduct(_mapper.Map<ProductEntity>(request));
             return await Task.FromResult("Produto cadastro com sucesso.");
-            
         }
 
         public async Task<string> Handle(DeleteProductCommand request, CancellationToken cancellationToken)
@@ -47,8 +46,7 @@ namespace API.Domain.Product
 
         public async Task<string> Handle(UpdateProductCommand request, CancellationToken cancellationToken)
         {
-            Guid id;
-            if(!Guid.TryParse(request.Id, out id))
+            if(request.Id == Guid.Empty)
                 return await Task.FromResult("Um Id inválido foi fornecido, não e possível efetuar a ação.");
 
             _repository.UpdateProduct(_mapper.Map<ProductEntity>(request));

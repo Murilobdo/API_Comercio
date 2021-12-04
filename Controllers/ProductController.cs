@@ -15,7 +15,7 @@ namespace API.Controllers
     public class ProductController : ControllerBase
     {
         private readonly IMediator _mediator;
-
+        
         public ProductController(IMediator mediator)
         {
             _mediator = mediator;
@@ -28,8 +28,8 @@ namespace API.Controllers
         {
             try
             {
-                //TODO: Pegar o id da empresa na requisição
-                //para fazer o cadastro do produto
+                //TODO: Pegar o id company corretamente
+                command.IdCompany = Guid.NewGuid();
                 var response = await _mediator.Send(command);
                 return Ok(response);
             }
@@ -45,6 +45,8 @@ namespace API.Controllers
         {
             try
             {
+                //TODO: Pegar o id company corretamente
+                command.IdCompany = Guid.NewGuid();
                 var response = await _mediator.Send(command);
                 return Ok(response);
             }

@@ -1,4 +1,6 @@
 using System;
+using API_MongoDB.Domain.Company.Models;
+
 namespace API.Models
 {
     public class ProductEntity : EntityBase
@@ -6,7 +8,7 @@ namespace API.Models
 
         public ProductEntity()
         {
-            // Id = Guid.NewGuid();
+            Id = Guid.NewGuid();
         }
 
         public string Name { get; set; }
@@ -14,5 +16,8 @@ namespace API.Models
         public decimal Price { get; set; }
         public int Quantity { get; set; }
         public Guid IdCompany { get; set; }
+        public CompanyEntity Company { get; set; }
+        
+        
     }
 }

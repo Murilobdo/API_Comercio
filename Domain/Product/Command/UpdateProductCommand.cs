@@ -1,3 +1,5 @@
+using System;
+
 namespace API.Domain.Product.Command
 {
     public class UpdateProductCommand : AddProductCommand
@@ -6,6 +8,7 @@ namespace API.Domain.Product.Command
         {
             
         }
-        public string Id { get; set; }
+
+        public Guid Id { get; set; }
     }
 }

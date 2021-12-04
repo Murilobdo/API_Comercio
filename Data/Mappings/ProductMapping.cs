@@ -18,6 +18,12 @@ namespace API_MongoDB.Data.Mappings
             
             builder.Property(p => p.Price)
                 .HasColumnType("decimal (8,2)");
+
+            //relationships
+            builder.HasOne(p => p.Company)
+                .WithMany(p => p.Products)
+                .HasForeignKey(p => p.IdCompany)
+                .OnDelete(DeleteBehavior.Restrict);
         }
     }
 }
